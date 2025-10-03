@@ -52,12 +52,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit" name="jugada" value="papel"><?php echo PAPEL; ?> Papel</button>
         <button type="submit" name="jugada" value="tijeras"><?php echo TIJERAS; ?> Tijeras</button>
     </form>
-    <?php if ($resultado): ?>
-        <div class="resultado">
-            <p>Tú elegiste: <span class="emoji"><?php echo $opciones[$jugador]; ?></span></p>
-            <p>La máquina eligió: <span class="emoji"><?php echo $opciones[$maquina]; ?></span></p>
-            <strong><?php echo $resultado; ?></strong>
-        </div>
-    <?php endif; ?>
 </body>
 </html>
