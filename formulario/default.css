@@ -1,0 +1,80 @@
+
+        body {
+            background: #a3a3b7;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 2.5em;
+            margin-top: 24px;
+            margin-bottom: 24px;
+        }
+        .form-container {
+            background: #fff;
+            border-radius: 14px;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 32px 28px 24px 28px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+        }
+        label {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 6px;
+            margin-top: 18px;
+        }
+        input[type="text"], input[type="number"], input[type="file"] {
+            width: 100%;
+            padding: 8px 10px;
+            margin-bottom: 12px;
+            border: 1px solid #b2bec3;
+            border-radius: 6px;
+            font-size: 1em;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        fieldset {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 18px;
+            padding: 12px 16px;
+            background: #fafafa;
+        }
+        legend {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1em;
+            font-weight: bold;
+        }
+        .armas label, .magia label {
+            display: inline-block;
+            margin-right: 18px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+        .magia label {
+            margin-right: 32px;
+        }
+        .botones {
+            display: flex;
+            gap: 16px;
+            margin-top: 18px;
+        }
+        button, input[type="submit"], input[type="reset"] {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 24px;
+            font-size: 1em;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover, input[type="submit"]:hover, input[type="reset"]:hover {
+            background: #0056b3;
+        }
+    
