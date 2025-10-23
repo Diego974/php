@@ -1,4 +1,11 @@
 <?php
+require_once __DIR__ . '/vendor/autoload.php';
+if (class_exists('\Mpdf\Mpdf')) {
+    echo "✅ mPDF cargado correctamente";
+} else {
+    echo "❌ No se encuentra la clase Mpdf\Mpdf";
+    exit;
+}
 $calavera = "uploads/one-piece-calavera.png";
 
 function mostrar_formulario() {
@@ -35,8 +42,9 @@ function mostrar_resultado() {
             else $mensaje = "Error al subir la imagen.";
         }
     }
-
+    ob_start();
     ?>
+    
     <!DOCTYPE html>
     <html lang="es">
     <head>
@@ -44,7 +52,68 @@ function mostrar_resultado() {
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Resultado - Datos del Jugador</title>
       <link rel="stylesheet" href="default.css">
-      
+      <style>
+        .resultado {
+          background: #fff59d;
+          border-radius: 15px;
+          padding: 20px;
+          width: 700px;
+          margin: 30px auto;
+          box-shadow: 0 0 10px rgba(0,0,0,0.2);
+          font-family: Tahoma, Geneva, sans-serif;
+        }
+
+        .resultado h2 {
+          text-align: center;
+          color: #111;
+          margin-top: 0;
+        }
+
+        .resultado-contenido {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          gap: 20px;
+        }
+
+        .resultado .datos {
+          flex: 1;
+          padding-right: 10px;
+        }
+
+        .resultado .datos p {
+          margin: 8px 0;
+          font-size: 16px;
+          color: #000;
+        }
+
+        .resultado .datos strong {
+          display: inline-block;
+          width: 180px;
+        }
+
+        .resultado .imagen {
+          width: 200px;
+          text-align: center;
+        }
+
+        .resultado .imagen img {
+          border: 2px solid #555;
+          border-radius: 6px;
+          margin-top: 8px;
+          max-width: 180px;
+          height: auto;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .resultado .error {
+          color: red;
+          font-weight: bold;
+          margin-top: 8px;
+        }
+      </style>
     </head>
     <body>
       <div class="resultado">
@@ -77,7 +146,14 @@ function mostrar_resultado() {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    ob_start();
     mostrar_resultado();
+    $contenido = ob_get_clean();
+
+    require_once __DIR__ . '/vendor/autoload.php';
+    $mpdf = new \Mpdf\Mpdf();
+    $mpdf->WriteHTML($contenido);
+    $mpdf->Output();
 } else {
     mostrar_formulario();
 }
