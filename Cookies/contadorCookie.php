@@ -14,7 +14,6 @@ if($nvisitas <5){
   setcookie("visitas", $nvisitas, time() -6000);
 }
 
-
 ?>
 <!DOCTYPE html>
 <html>
