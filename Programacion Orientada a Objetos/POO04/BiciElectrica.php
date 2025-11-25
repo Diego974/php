@@ -2,11 +2,11 @@
 
 class Bicicleta {
 
-    private $id;
-    private $coordx;
-    private $coordy;
-    private $bateria;
-    private $operativa;
+    // private $id;
+    // private $coordx;
+    // private $coordy;
+    // private $bateria;
+    // private $operativa;
 
     public function __construct($id, $coordx, $coordy, $bateria, $operativa){
         $this->id = $id;

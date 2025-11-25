@@ -1,9 +1,12 @@
 <?php
-require_once("BiciElectrica.php");
+require_once "BiciElectrica.php";
 
-function cargabicis() {
-    $fp = fopen("Bicis.csv", "r");
-    $lista = array();
+function cargabicis():array {
+    $fp = @fopen("Bicis.csv", "r");
+    if ($fp == false){
+        die("Error al abrir el fichero");
+    }
+    $lista = [];
 
     while ($fila = fgetcsv($fp)) {
         $bici = new Bicicleta($fila[0], $fila[1], $fila[2], $fila[3], $fila[4] == 1);
