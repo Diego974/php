@@ -1,7 +1,8 @@
 <html>
+
 <head>
-<title>Procesa una subida de archivos </title>
-<meta charset="UTF-8">
+    <title>Procesa una subida de archivos </title>
+    <meta charset="UTF-8">
 </head>
 <?php
 // se incluyen los códigos de error que produce la subida de archivos en PHP
@@ -9,7 +10,7 @@
 $codigosErrorSubida= [
  0 => 'Subida correcta',
  1 => 'El tamaño del archivo excede el admitido por el servidor', // directiva
-upload_max_filesize en php.ini
+upload_max_filesize en php.ini[
  2 => 'El tamaño del archivo excede el admitido por el cliente', // directiva MAX_FILE_SIZE en
 el formulario HTML
  3 => 'El archivo no se pudo subir completamente',
@@ -66,10 +67,12 @@ true) {
  }
 }
 ?>
+
 <body>
-<?php echo " Bienvenido ".$_REQUEST['nombre']."<br>"?>
-<?php echo $mensaje; ?>
-<br />
-<a href="subirfichero.html">Volver a la página de subida</a>
+    <?php echo " Bienvenido ".$_REQUEST['nombre']."<br>"?>
+    <?php echo $mensaje; ?>
+    <br />
+    <a href="subirfichero.html">Volver a la página de subida</a>
 </body>
+
 </html>
