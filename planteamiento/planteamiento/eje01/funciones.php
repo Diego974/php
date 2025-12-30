@@ -1,25 +1,30 @@
 <?php
 
 include "dat/Cliente.php";
-$fichero = fopen("dat/clientes.csv", "r");
-$valores = fgetcsv($fichero);
+
 /**
  *  Lee el fichero de clientes y lo carga en un Array de objetos clientes
  *  @return array - tabla asociativa con clave dni.
  */
 
 function cargarTablaClientes (): array {
+
     $tclientes = [];
-    
      // COMPLETAR
-    for ($i = 0; $i < $fichero; $i++){
-        $fichero = fopen("dat/clientes.csv", "w");
-    foreach ($fichero as $valores){
-        fputcsv($fichero, $tclientes); 
-    }
-    fclose($fichero);
+    $archivo = fopen('clientes.csv', 'r');
+    if ($archivo !== false){
+        while(($linea = fgetcsv($archivo)) !== false){
+            $datos[] = $linea;
+            $objetoCliente = new Cliente($datos[0], $datos[1], $datos[2], $datos[3]);
+            $tclientes[$datos[0]] = $objetoCliente;
+            
         }
     }
+    fclose($archivo);
+
+    return $tclientes;
+
+}
 
 /**
  * Escribe la tabla de objectos clientes en el fichero csv
@@ -27,17 +32,19 @@ function cargarTablaClientes (): array {
  */
 
 function salvarTablaClientes(array $tabla){
-    
+
     $fich = fopen('dat/clientes.csv','w');
     // COMPLETAR
-    for ($i = 0; $i < $fich; $i++){
-        $fich = fopen("dat/clientes.csv", "w");
-    foreach ($fichero as $valores){
-        fputcsv($tclientes, $fich); 
-    }
-    fclose($fich);
+    if ($fich !== false){
+    foreach($tabla as $cliente){
+        $aux = [$cliente -> dni, $cliente -> nombre, $cliente -> clavehash, $cliente -> puntos];
+        fputcsv($fich, $aux);
         }
     }
+    
+    fclose($fich);
+
+}
 
 /**
  * Valida usuario y contraseña contra clientes.csv
@@ -49,14 +56,11 @@ function validarCliente($dni, $clave) :bool{
     
     $tablacli = cargarTablaClientes();
     // COMPLETAR
-    $fichero = fopen("clientes.csv", "r");
-    if ($fichero) { 
-        while ($valores = fgetcsv($fichero)) { 
-            if ($valores[0] == $dni && password_verify($clave, $valores[2])) {
-                return true;
-            }
+    if (isset($tablacli[$dni])){
+        $cliente = $tablacli[$dni];
+        if (password_verify($clave, $cliente->clavehash)) {
+            return true; // Todo correcto
         }
-        fclose($fichero); 
     }
     return false;
 }
@@ -68,11 +72,13 @@ function validarCliente($dni, $clave) :bool{
  * @return true si han anotado los datos
 */
 function anotarPuntos($dni,$puntos): bool {
-    $tablaCli = cargarTablaClientes();
+    $tablacli = cargarTablaClientes();
     // COMPLETAR
-    if($valores[0] = $dni){
-        $_SESSION['puntos'] = $puntos;
-        return true;  
+    if (isset($tablacli[$dni])){
+        $cliente = $tablacli[$dni];
+        $cliente -> puntos = $puntos;
+        salvarTablaClientes($tablacli);
+        return true;
     }
     return false;
 }

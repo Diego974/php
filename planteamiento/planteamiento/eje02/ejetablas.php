@@ -26,27 +26,12 @@ print_r($res2);
  */
 function agruparPorCategoria($precios, $categorias): array {
     $resultado = [];
-    $resu = $precios;
-    for ($i = 0; $i < strlen($resu); $i++) {
-        if ($precios[i] <=20){
-            $categorias[0] = $categorias[0][$precios[i]];
-        } if ($precios[i] <=100){
-            $categorias[1] = $categorias[1][$precios[i]];
-        } else{
-            $categorias[2] = $categorias[2][$precios[i]];
-        }
-    }
-    $resultado = $categorias;
+    
     return $resultado;
 }
 
 function generarDatos($min,$max, $nunelementos): array {
     $resultado = [];
-    $min = 1;
-    $max = 1000;
-    $aleatorio = Rand($min, $max);
-    for ($i = 0; $i < strlen($resultado); $i++){
-        $resultado[i] = $aleatorio;
-    }
+    
     return $resultado;
 }
