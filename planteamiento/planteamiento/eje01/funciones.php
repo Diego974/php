@@ -7,23 +7,9 @@ include "dat/Cliente.php";
  *  @return array - tabla asociativa con clave dni.
  */
 
-function cargarTablaClientes (): array {
+function cargarTablaClientes(): array {
 
-    $tclientes = [];
-     // COMPLETAR
-    $archivo = fopen('clientes.csv', 'r');
-    if ($archivo !== false){
-        while(($linea = fgetcsv($archivo)) !== false){
-            $datos[] = $linea;
-            $objetoCliente = new Cliente($datos[0], $datos[1], $datos[2], $datos[3]);
-            $tclientes[$datos[0]] = $objetoCliente;
-            
-        }
-    }
-    fclose($archivo);
-
-    return $tclientes;
-
+    
 }
 
 /**
@@ -33,16 +19,7 @@ function cargarTablaClientes (): array {
 
 function salvarTablaClientes(array $tabla){
 
-    $fich = fopen('dat/clientes.csv','w');
-    // COMPLETAR
-    if ($fich !== false){
-    foreach($tabla as $cliente){
-        $aux = [$cliente -> dni, $cliente -> nombre, $cliente -> clavehash, $cliente -> puntos];
-        fputcsv($fich, $aux);
-        }
-    }
     
-    fclose($fich);
 
 }
 
@@ -54,15 +31,7 @@ function salvarTablaClientes(array $tabla){
  */
 function validarCliente($dni, $clave) :bool{
     
-    $tablacli = cargarTablaClientes();
-    // COMPLETAR
-    if (isset($tablacli[$dni])){
-        $cliente = $tablacli[$dni];
-        if (password_verify($clave, $cliente->clavehash)) {
-            return true; // Todo correcto
-        }
-    }
-    return false;
+    
 }
 
 /**
@@ -72,13 +41,5 @@ function validarCliente($dni, $clave) :bool{
  * @return true si han anotado los datos
 */
 function anotarPuntos($dni,$puntos): bool {
-    $tablacli = cargarTablaClientes();
-    // COMPLETAR
-    if (isset($tablacli[$dni])){
-        $cliente = $tablacli[$dni];
-        $cliente -> puntos = $puntos;
-        salvarTablaClientes($tablacli);
-        return true;
-    }
-    return false;
+    
 }

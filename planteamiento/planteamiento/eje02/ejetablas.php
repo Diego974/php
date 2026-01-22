@@ -25,13 +25,20 @@ print_r($res2);
  * @return array Array multidimensional
  */
 function agruparPorCategoria($precios, $categorias): array {
-    $resultado = [];
+    $resultado = ['Barato' =>[], 'Medio' => [], 'Caro' => []];
+    
+    foreach($precios as $i){
+
+    }
     
     return $resultado;
 }
 
 function generarDatos($min,$max, $nunelementos): array {
     $resultado = [];
-    
+    for ($i = 0; $i < $nunelementos; $i++ ){
+        $random = random_int($min, $max);
+        array_push($resultado, $random);
+    }
     return $resultado;
 }
